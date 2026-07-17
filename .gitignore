@@ -1,0 +1,118 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.python-version
+.venv/
+venv/
+env/
+ENV/
+pip-wheel-metadata/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Jupyter / notebooks
+.ipynb_checkpoints/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+# .vscode/
+*.swp
+*.swo
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.token
+
+# Hugging Face, dataset, and framework caches
+.cache/
+hf_cache/
+huggingface/
+.huggingface/
+wandb/
+mlruns/
+lightning_logs/
+tensorboard/
+runs/
+logs/
+
+# Local data and generated datasets
+data/
+datasets/
+processed_data/
+raw_data/
+*.jsonl.cache
+*.arrow
+*.parquet
+*.tfrecord
+*.idx
+*.bin.idx
+
+# Training outputs and experiment artifacts
+outputs/
+output/
+results/
+checkpoints/
+checkpoint-*/
+ckpt/
+artifacts/
+experiments/
+eval_results/
+predictions/
+samples/
+tmp/
+temp/
+
+# Model weights and optimizer states
+models/
+pretrained_models/
+saved_models/
+adapters/
+lora/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.gguf
+*.onnx
+*.h5
+*.pb
+optimizer.pt
+scheduler.pt
+rng_state*.pth
+trainer_state.json
+
+# Distributed training / profiling
+deepspeed_config_*.json
+zero_to_fp32.py
+profile/
+profiler/
+trace/
+*.nsys-rep
+*.qdrep
+
+# Archives and compressed artifacts
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# Keep lightweight documentation placeholders if needed
+!**/.gitkeep
+!**/README.md
+!**/readme.md
+!**/*.example
+!**/*.sample
