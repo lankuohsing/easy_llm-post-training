@@ -165,7 +165,13 @@ $$
 - 两个连加符号先遍历样本下标 $i=1,\ldots,N$，再遍历该样本的位置下标 $t=1,\ldots,L_i$；分子累加所有有效位置的 token 对数似然，分母 $\sum_{i=1}^{N}\sum_{t=1}^{L_i}m_{i,t}$ 是训练集中的有效监督 token 总数；
 - 最外层负号把“最大化对数似然”转换为“最小化损失”。
 
-训练的目标可以简写为 $\theta^*=\operatorname*{arg\,min}_{\theta}\mathcal{L}_{\mathrm{SFT}}(\theta)$，其中 $\operatorname*{arg\,min}_{\theta}$ 表示寻找使损失最小的参数， $\theta^*$ 表示在该训练目标下得到的最优参数。这里的“最优”是相对于给定数据、模型和优化过程而言的，实际训练通常只能得到近似解。
+训练的目标可以简写为
+
+$$
+\theta^*=\underset{\theta}{\arg\min}\,\mathcal{L}_{\mathrm{SFT}}(\theta).
+$$
+
+其中， $\arg\min$ 表示寻找使损失最小的参数， $\theta^*$ 表示在该训练目标下得到的最优参数。这里的“最优”是相对于给定数据、模型和优化过程而言的，实际训练通常只能得到近似解。
 
 ### 3.4 为什么需要 loss mask
 
@@ -379,9 +385,9 @@ $$
 
 $$
 \hat{\theta}_{\mathrm{MLE}}
-=\operatorname*{arg\,max}_{\theta}
+=\underset{\theta}{\arg\max}
 \mathscr{L}(\theta;\mathcal{D})
-=\operatorname*{arg\,max}_{\theta}
+=\underset{\theta}{\arg\max}
 \prod_{i=1}^{N}p_\theta(y_i\mid x_i).
 $$
 
@@ -392,8 +398,8 @@ $$
 大量小于 1 的概率连续相乘容易产生数值下溢，而且乘积也不方便求导。由于自然对数函数 $\log(\cdot)$ 严格单调递增，最大化一个正数与最大化它的对数会得到同一个最优参数：
 
 $$
-\operatorname*{arg\,max}_{\theta}\mathscr{L}(\theta;\mathcal{D})
-=\operatorname*{arg\,max}_{\theta}\log\mathscr{L}(\theta;\mathcal{D}).
+\underset{\theta}{\arg\max}\,\mathscr{L}(\theta;\mathcal{D})
+=\underset{\theta}{\arg\max}\,\log\mathscr{L}(\theta;\mathcal{D}).
 $$
 
 利用“乘积的对数等于对数之和”，可得条件对数似然：
@@ -407,7 +413,7 @@ $$
 
 $$
 \hat{\theta}_{\mathrm{MLE}}
-=\operatorname*{arg\,min}_{\theta}
+=\underset{\theta}{\arg\min}
 \left[-\sum_{i=1}^{N}\log p_\theta(y_i\mid x_i)\right].
 $$
 
