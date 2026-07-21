@@ -48,7 +48,7 @@
 - **SFT**：使用人工编写、模型合成或业务沉淀的“输入—理想输出”样本，教模型按照指令完成任务。
 - **偏好优化（Preference Optimization）**：进一步利用回答之间的偏好、奖励信号或可验证结果，让模型更有用、更安全或更符合特定目标。
 
-三者并非完全割裂。SFT 仍然使用 next-token prediction，只是训练数据从通用文本变成了高质量示范。可以把它理解为：**预训练主要赋予能力，SFT 主要教模型在什么场景下、以什么方式调用这些能力。** Instruction tuning 通常就是以自然语言指令为数据形式的 SFT；聊天模型训练则是它的多轮对话版本。
+三者并非完全割裂。SFT 仍然使用 next-token prediction，只是训练数据从通用文本变成了高质量示范。可以把它理解为：**预训练主要赋予知识和能力，SFT 主要教模型在什么场景下、以什么方式运用这些知识/能力。** Instruction tuning 通常就是以自然语言指令为数据形式的 SFT；聊天模型训练则是它的多轮对话版本。
 
 > SFT 能补充领域知识，但不适合被简单理解成“向模型数据库里写入大量新事实”。若目标主要是让知识可更新、可追溯，检索增强生成（RAG）往往更合适；若目标是稳定地改变回答方式、任务能力或输出格式，SFT 更直接。
 
@@ -168,7 +168,7 @@ $$
 训练的目标可以简写为
 
 $$
-\theta^*=\underset{\theta}{\arg\min}\,\mathcal{L}_{\mathrm{SFT}}(\theta).
+\theta^*=\underset{\theta}{\arg\min}\ \mathcal{L}_{\mathrm{SFT}}(\theta).
 $$
 
 其中， $\arg\min$ 表示寻找使损失最小的参数， $\theta^*$ 表示在该训练目标下得到的最优参数。这里的“最优”是相对于给定数据、模型和优化过程而言的，实际训练通常只能得到近似解。
@@ -312,7 +312,7 @@ $$
 困惑度（perplexity）是平均 token 负对数似然的指数形式：
 
 $$
-\mathrm{PPL}=\exp(\mathcal{L}).
+\mathrm{PPL}=\exp(\mathcal{L})
 $$
 
 其中 $\mathrm{PPL}$ 表示困惑度， $\exp(\cdot)$ 表示以自然常数 $e$ 为底的指数函数， $\mathcal{L}$ 表示使用自然对数计算的平均 token 负对数似然。若令 $\mathcal{L}=\mathcal{L}_{\mathrm{SFT}}(\theta)$，则这里的 PPL 只统计 $m_{i,t}=1$ 的监督位置。它能衡量模型对参考文本的预测能力，但不能单独代表回答是否有帮助。不同 tokenizer、不同 loss mask 或不同数据集上的 PPL 也不能直接横向比较。
