@@ -31,7 +31,11 @@ Python 代码应保持简单、清晰，适合教程阅读。使用 4 空格缩�
 
 不同章节中的公式符号必须兼容、一致。新增或改写公式时，应检查已有章节的变量命名、上下标和目标函数记号，避免同一概念使用多个符号，或同一符号表示不同含义。
 
-Markdown 公式应同时兼容 GitHub 与 VS Code 预览。行内公式使用 `$...$` 时，开头的 `$` 不要紧贴中文标点，应与前文保留一个空格；不要在 `$` 与公式内容之间额外加空格。行间公式的 `$$` 必须单独成行，并在公式块前后保留空行。LaTeX 公式中不要直接写 `<`，因为 GitHub 可能先将其解析为 HTML；小于号统一写成 `\lt`。仓库通过 `.vscode/settings.json` 启用 VS Code 内置 Markdown 数学渲染。修改公式后，应检查是否仍有紧贴中文标点的行内公式或数学环境中的裸 `<`。
+Markdown 公式应同时兼容 GitHub 与 VS Code/Cursor 的标准 Markdown Preview。行内公式使用 `$...$` 时，开头的 `$` 不要紧贴中文标点，应与前文保留一个空格；不要在 `$` 与公式内容之间额外加空格。行间公式的 `$$` 必须单独成行，并在公式块前后保留空行。LaTeX 公式中不要直接写 `<`，因为 GitHub 可能先将其解析为 HTML；小于号统一写成 `\lt`。修改公式后，应检查是否仍有紧贴中文标点的行内公式或数学环境中的裸 `<`。
+
+Cursor 的编辑区内置了带有 “Preview / Markdown” 切换按钮的 WYSIWYG Markdown 预览，但该预览器与 VS Code 标准 Markdown Preview 不是同一个组件，可能直接显示 LaTeX 源码，且不受 `markdown.math.enabled` 控制。即使 `.vscode/settings.json` 已将 `*.md` 默认关联到 `vscode.markdown.preview.editor`，从源码点击 Cursor 右上角的 “Preview” 仍会切回不支持公式的 WYSIWYG 预览；文件关联只能保证重新打开文件时进入标准预览，不能改变这个按钮的行为。
+
+在 Cursor 中编辑含公式的 Markdown 时，不要使用右上角的 “Preview / Markdown” 按钮往返切换。源码编辑完成后，应使用 `Cmd+Shift+V` 执行 “Markdown: Open Preview”，或使用 `Cmd+K` 后按 `V` 执行 “Markdown: Open Preview to the Side”；这两个命令会调用支持 `markdown.math.enabled` 的标准 Markdown Preview。若需要从标准预览返回源码，可执行 “Markdown: Show Source” 或 “Reopen Editor With... → Text Editor”。若必须彻底禁用 Cursor WYSIWYG，只能使用 Cursor 的 classic 窗口模式启动项目；不要依赖未公开的 feature gate 或修改 Cursor 安装文件。
 
 ## 测试规范
 
